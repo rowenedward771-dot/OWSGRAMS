@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Owsgram{% endblock %}</title>
+<script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>:root{--ink:#17212b;--mint:#b9f2d0;--coral:#ff8467;--paper:#f5f7f3}body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink)}h1,h2,h3,.brand{font-family:'Space Grotesk',sans-serif}.grain{background-image:radial-gradient(#d9e2da .7px,transparent .7px);background-size:14px 14px}.fade-up{animation:fade-up .45s ease both}@keyframes fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}</style>
+</head>
+<body class="min-h-screen grain">
+<nav class="sticky top-0 z-40 border-b border-[#dce5dc] bg-[#f5f7f3]/90 backdrop-blur-xl"><div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4"><a href="{{ url_for('index') }}" class="brand flex items-center gap-2 text-2xl font-bold tracking-tight"><span class="grid h-9 w-9 place-items-center rounded-xl bg-[#17212b] text-[#b9f2d0]">◎</span>owsgram</a>{% if current_user.is_authenticated %}<div class="flex items-center gap-2 sm:gap-5"><a href="{{ url_for('index') }}" title="For You" class="rounded-xl p-2 hover:bg-white"><i data-lucide="compass"></i></a><a href="{{ url_for('profile') }}" title="Profil" class="rounded-xl p-2 hover:bg-white"><i data-lucide="user-round"></i></a><form method="post" action="{{ url_for('logout') }}"><button title="Keluar" class="rounded-xl p-2 hover:bg-white"><i data-lucide="log-out"></i></button></form></div>{% endif %}</div></nav>
+<div class="mx-auto max-w-6xl px-5 pt-5">{% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="mb-4 rounded-2xl border px-4 py-3 text-sm font-semibold {% if category == 'danger' %}border-[#ffc6bd] bg-[#fff0ed] text-[#a33b27]{% else %}border-[#b8e5c9] bg-[#ecfff2] text-[#27633c]{% endif %}">{{ message }}</div>{% endfor %}{% endwith %}</div>
+<main class="mx-auto max-w-6xl px-5 pb-16 pt-2">{% block content %}{% endblock %}</main><script>function sharePost(url){if(navigator.share){navigator.share({title:'Owsgram',url:url})}else{navigator.clipboard.writeText(url)}}document.querySelectorAll('button[title="Bagikan tautan"]').forEach(button=>button.addEventListener('click',()=>sharePost(location.href)));lucide.createIcons();</script>
+</body></html>

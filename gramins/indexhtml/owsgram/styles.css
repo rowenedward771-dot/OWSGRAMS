@@ -1,0 +1,66 @@
+/* This file contains the CSS styles for the application, defining the layout, colors, fonts, and overall appearance of the web pages. */
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+h1, h2, h3, .brand {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.grain {
+    background-image: radial-gradient(#d9e2da .7px, transparent .7px);
+    background-size: 14px 14px;
+}
+
+.fade-up {
+    animation: fade-up .45s ease both;
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.navbar {
+    border-bottom: 1px solid #dce5dc;
+    background: rgba(245, 247, 243, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.navbar a {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s;
+}
+
+.navbar a:hover {
+    background: white;
+}
+
+.message {
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.message.danger {
+    border: 1px solid #ffc6bd;
+    background: #fff0ed;
+    color: #a33b27;
+}
+
+.message.success {
+    border: 1px solid #b8e5c9;
+    background: #ecfff2;
+    color: #27633c;
+}
